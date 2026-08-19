@@ -156,26 +156,28 @@ export function ExperiencePreview() {
                     aria-expanded={open}
                     className="flex w-full flex-col gap-4 p-5 text-start sm:flex-row sm:items-center sm:justify-between sm:p-6"
                   >
-                    <div className="flex items-center gap-5 sm:gap-7">
-                      <span
-                        dir="ltr"
-                        className="min-w-10 font-['Oswald',sans-serif] text-sm font-bold opacity-80"
-                      >
-                        {item.year}
-                      </span>
+                    <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:gap-7">
+                      <div className="flex items-center gap-3">
+                        <span
+                          dir="ltr"
+                          className="min-w-9 shrink-0 font-['Oswald',sans-serif] text-xs font-bold opacity-80 sm:min-w-10 sm:text-sm"
+                        >
+                          {item.year}
+                        </span>
 
-                      <div
-                        className={`grid size-10 shrink-0 place-items-center rounded-xl ${
-                          featured
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-foreground/10 text-primary"
-                        }`}
-                      >
-                        <ActiveIcon className="size-4" />
+                        <div
+                          className={`grid size-9 shrink-0 place-items-center rounded-xl sm:size-10 ${
+                            featured
+                              ? "bg-primary text-primary-foreground"
+                              : "bg-foreground/10 text-primary"
+                          }`}
+                        >
+                          <ActiveIcon className="size-4" />
+                        </div>
                       </div>
 
                       <div className="min-w-0">
-                        <h3 className="font-['Oswald',sans-serif] text-lg sm:text-xl font-bold leading-tight tracking-tight">
+                        <h3 className="font-['Oswald',sans-serif] text-lg sm:text-xl font-bold leading-tight tracking-tight [overflow-wrap:anywhere]">
                           {item.title[lang]}
                         </h3>
                         <p
@@ -188,7 +190,8 @@ export function ExperiencePreview() {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3 sm:max-w-[20rem] sm:justify-end">
+
+                    <div className="flex min-w-0 items-center gap-3 sm:max-w-[20rem] sm:justify-end">
                       <p
                         className={`text-xs font-bold sm:text-end ${
                           featured ? "opacity-90" : "text-muted-foreground"

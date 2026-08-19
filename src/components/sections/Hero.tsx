@@ -32,14 +32,15 @@ export function Hero() {
             style={{ animationDelay: "0.18s" }}
             className="enter-up mt-6 flex flex-col items-center lg:items-start gap-4"
           >
-            <div className="flex items-center gap-3">
+            <div className="flex w-full items-center justify-center gap-3 lg:justify-start">
               <p className="max-w-md text-sm sm:text-base font-medium leading-snug text-foreground/90 text-center lg:text-start">
                 {tr("hero.subtitle")}
               </p>
-              <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-foreground/10 border border-border text-foreground">
+              <div className="hidden sm:grid size-9 shrink-0 place-items-center rounded-xl bg-foreground/10 border border-border text-foreground">
                 <Trophy className="size-4 text-primary" />
               </div>
             </div>
+
 
             {/* Primary actions: view work + download CV, inline on one line */}
             <div className="mt-4 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
