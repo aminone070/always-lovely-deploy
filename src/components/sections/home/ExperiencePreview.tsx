@@ -191,7 +191,7 @@ export function ExperiencePreview() {
                     </div>
 
 
-                    <div className="flex items-center gap-3 sm:max-w-[20rem] sm:justify-end">
+                    <div className="flex min-w-0 items-center gap-3 sm:max-w-[20rem] sm:justify-end">
                       <p
                         className={`text-xs font-bold sm:text-end ${
                           featured ? "opacity-90" : "text-muted-foreground"
