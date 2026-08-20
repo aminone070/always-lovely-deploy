@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { LottieIcon } from "@/components/ui/LottieIcon";
 import { EASE } from "@/lib/motion";
 
@@ -17,8 +17,8 @@ interface CredentialVisualsProps {
 /** Cross-fading Lottie artwork paired with the active slide. */
 export function CredentialVisuals({ activeIdx, dir, reduce }: CredentialVisualsProps) {
   return (
-    <div className="relative w-full overflow-hidden rounded-2xl border border-border bg-foreground/5 [contain:paint] lg:col-span-4 lg:col-start-1 lg:row-start-2 lg:self-start">
-      <div className="relative aspect-[4/5] w-full lg:aspect-[5/4]">
+    <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl border border-border bg-foreground/5 [contain:paint] md:max-w-lg lg:col-span-4 lg:col-start-1 lg:row-start-2 lg:max-w-none lg:self-start">
+      <div className="relative aspect-[4/3] w-full sm:aspect-[16/10] lg:aspect-[5/4]">
         {SLIDE_VISUALS.map((visual, i) => {
           const isActive = i === activeIdx % SLIDE_VISUALS.length;
           const offset = reduce ? 0 : dir * 56;

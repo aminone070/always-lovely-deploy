@@ -8,7 +8,7 @@ export function Tag({ children, className, ...rest }: TagProps) {
     <span
       {...rest}
       className={cn(
-        "rounded-xl bg-primary px-3 py-1 font-sans text-[10px] font-black tracking-widest text-primary-foreground uppercase shadow-sm",
+        "rounded-xl bg-primary px-3 py-1 type-micro text-primary-foreground shadow-sm",
         className,
       )}
     >

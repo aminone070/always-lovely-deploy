@@ -21,7 +21,7 @@ export function ProjectFilterChips({ filter, onChange, counts }: ProjectFilterCh
           key={value}
           onClick={() => onChange(value)}
           aria-pressed={filter === value}
-          className={`rounded-xl px-4 sm:px-5 py-2 sm:py-2.5 text-[11px] sm:text-xs font-black tracking-widest uppercase transition-all duration-200 ${
+          className={`type-label pill-step rounded-xl transition-all duration-200 ${
             filter === value
               ? "bg-primary text-primary-foreground shadow-md scale-105"
               : "border border-border bg-foreground/10 text-foreground/90 hover:bg-foreground/20"
@@ -29,7 +29,7 @@ export function ProjectFilterChips({ filter, onChange, counts }: ProjectFilterCh
         >
           {value === "All" ? tr("projects.index.all") : category(value)}
           {counts[value] != null && (
-            <span className="ms-1.5 text-[10px] opacity-80" dir="ltr">
+            <span className="type-micro ms-1.5 opacity-80 normal-case" dir="ltr">
               ({counts[value]})
             </span>
           )}

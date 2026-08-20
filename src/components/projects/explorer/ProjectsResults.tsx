@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m as motion, useReducedMotion } from "framer-motion";
 import type { Project } from "@/data";
 import { ProjectCard } from "../ProjectCard";
 import type { ProjectView } from "../types";

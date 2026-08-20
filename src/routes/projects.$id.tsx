@@ -1,5 +1,5 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { projects } from "@/data";
 import { getProjectDetail, getRelatedProjects } from "@/data/project-details";
@@ -80,9 +80,7 @@ function ProjectNotFound() {
   return (
     <PageShell contained={false}>
       <div className="flex flex-1 flex-col items-center justify-center py-32 text-center">
-        <h1 className="mb-4 font-display text-4xl font-bold text-foreground">
-          {tr("project.notFound.title")}
-        </h1>
+        <h1 className="mb-4 type-h1 text-foreground">{tr("project.notFound.title")}</h1>
         <CtaLink to="/projects" variant="secondary" withArrow={false}>
           <ArrowLeft className="size-4 rtl:rotate-180" />
           {tr("project.notFound.back")}
@@ -103,12 +101,12 @@ function ProjectDetail() {
   const prevProject = index > 0 ? (projects[index - 1] ?? null) : null;
 
   return (
-    <PageShell contained={false} padded={false} disableOverflowX className="pb-24 pt-24 sm:pt-32">
+    <PageShell contained={false} padded={false} disableOverflowX className="nav-offset pb-24">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="mx-auto max-w-7xl px-5 sm:px-8"
+        className="container-page page-gutter"
       >
         <ProjectDetailHeader project={project} />
         <ProjectHighlights highlights={detail.highlights} />

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { EASE } from "@/lib/motion";
 import { useI18n } from "@/lib/i18n";
@@ -53,14 +53,13 @@ export function CredentialControls({
             onClick={() => onSelect(i)}
             aria-label={`${i + 1}/${total}`}
             aria-current={i === activeIdx}
-            className="group relative grid h-11 place-items-center transition-all"
+            className="relative h-1.5 overflow-hidden rounded-full bg-foreground/20 transition-all"
             style={{ width: i === activeIdx ? 32 : 12 }}
           >
-            <span className="block h-1.5 w-full overflow-hidden rounded-full bg-foreground/20" />
             {i === activeIdx && (
               <motion.span
                 layoutId="award-dot"
-                className="absolute inset-x-0 top-1/2 h-1.5 -translate-y-1/2 rounded-full bg-primary"
+                className="absolute inset-0 rounded-full bg-primary"
                 transition={{ duration: 0.4, ease: EASE }}
               />
             )}

@@ -15,7 +15,7 @@ export function ProjectDetailHeader({ project }: { project: Project }) {
       <div className="mb-12 md:mb-16">
         <Link
           to="/projects"
-          className="group inline-flex items-center gap-2 text-xs font-black tracking-widest uppercase text-foreground/60 transition-colors hover:text-primary"
+          className="type-label group inline-flex items-center gap-2 text-foreground/60 transition-colors hover:text-primary"
         >
           <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1 rtl:rotate-180" />
           {tr("project.detail.back")}
@@ -40,13 +40,9 @@ export function ProjectDetailHeader({ project }: { project: Project }) {
           ))}
         </div>
 
-        <h1 className="mb-8 font-display text-5xl leading-[0.9] font-black tracking-tight uppercase sm:text-6xl md:text-7xl lg:text-8xl">
-          {L.projectTitle(project)}
-        </h1>
+        <h1 className="type-h1 mb-8">{L.projectTitle(project)}</h1>
 
-        <p className="max-w-4xl text-xl leading-relaxed font-light text-foreground/70 md:text-2xl lg:text-3xl">
-          {L.projectDescription(project)}
-        </p>
+        <p className="type-lead max-w-4xl text-foreground/70">{L.projectDescription(project)}</p>
       </header>
     </>
   );

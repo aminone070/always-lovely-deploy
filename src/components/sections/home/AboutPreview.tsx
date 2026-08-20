@@ -1,14 +1,14 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import portraitWebp from "@/assets/portrait-cutout.webp";
-import portraitAvif from "@/assets/portrait-cutout.avif";
+const portraitWebp = "/images/portrait-cutout.webp";
+const portraitAvif = "/images/portrait-cutout.avif";
 import { PenTyping } from "@/components/ui/PenTyping";
 
 export function AboutPreview() {
   return (
-    <section className="w-full bg-background py-16 px-4 sm:px-8 md:px-12 text-foreground">
-      <div className="mx-auto max-w-6xl">
-        <div className="relative rounded-2xl bg-card p-6 sm:p-10 lg:p-14 border border-border shadow-glow overflow-hidden">
+    <section className="section-shell section-y select-none">
+      <div className="container-page">
+        <div className="relative surface-card overflow-hidden p-6 sm:p-10 lg:p-14">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-center">
             {/* Left Column (5 cols) */}
             <div className="lg:col-span-6 flex flex-col justify-center items-start">
@@ -22,11 +22,9 @@ export function AboutPreview() {
                   </div>
                 </div>
                 <div className="grid place-items-center rounded-[6px] bg-foreground px-2.5 py-0.5 shadow-sm">
-                  <span className="font-['Oswald',sans-serif] text-sm font-bold text-background">
-                    MS
-                  </span>
+                  <span className="type-wordmark text-background">MS</span>
                 </div>
-                <div className="flex flex-col text-start font-sans text-[9px] font-black tracking-[0.2em] text-foreground leading-tight uppercase">
+                <div className="flex flex-col text-start type-micro text-foreground">
                   <span>MOSTAFA</span>
                   <span>SAMIR</span>
                 </div>
@@ -35,11 +33,11 @@ export function AboutPreview() {
               {/* Headline */}
               <PenTyping
                 lines={["4+ Years of", "Full Stack Excellence"]}
-                className="font-['Caveat',cursive] text-4xl sm:text-5xl lg:text-6xl font-bold text-card-foreground leading-[1.1] mb-4"
+                className="type-script text-card-foreground mb-4"
               />
 
               {/* Description */}
-              <p className="font-sans text-xs sm:text-sm text-card-foreground/85 leading-relaxed mb-6 max-w-sm">
+              <p className="type-body text-card-foreground/85 mb-6 max-w-sm">
                 Senior Full Stack Engineer specializing in scaling marketplace throughput by 300%
                 using .NET 8, Clean Architecture & Next.js.
               </p>
@@ -48,20 +46,16 @@ export function AboutPreview() {
               <div className="flex w-full flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <Link
                   to="/about"
-                  className="group inline-flex items-center justify-center gap-3 rounded-xl bg-primary px-6 py-3 text-primary-foreground shadow-md transition-transform hover:scale-105"
+                  className="group btn-accent"
                 >
-                  <span className="font-sans text-xs font-black tracking-[0.2em] uppercase">
-                    ABOUT ME
-                  </span>
+                  <span className="type-label">ABOUT ME</span>
                   <ArrowRight className="size-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" />
                 </Link>
                 <Link
                   to="/projects"
-                  className="group inline-flex items-center justify-center gap-3 rounded-xl bg-background px-6 py-3 shadow-md border border-border transition-transform hover:scale-105"
+                  className="group btn-surface"
                 >
-                  <span className="font-sans text-xs font-black tracking-[0.2em] text-foreground uppercase">
-                    VIEW CASES
-                  </span>
+                  <span className="type-label text-foreground">VIEW CASES</span>
                   <ArrowRight className="size-4 text-foreground transition-transform group-hover:translate-x-1 rtl:rotate-180" />
                 </Link>
               </div>
@@ -74,12 +68,12 @@ export function AboutPreview() {
                 <picture>
                   <source type="image/avif" srcSet={portraitAvif} />
                   <img
-                  src={portraitWebp}
-                  alt="Portrait of Mostafa Samir"
-                  width={861}
-                  height={768}
-                  loading="lazy"
-                  className="relative z-10 w-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.45)]"
+                    src={portraitWebp}
+                    alt="Portrait of Mostafa Samir"
+                    width={861}
+                    height={768}
+                    loading="lazy"
+                    className="relative z-10 w-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.45)]"
                   />
                 </picture>
               </div>

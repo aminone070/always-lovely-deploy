@@ -28,9 +28,7 @@ export function ProjectBrief({ project, detail, hasLiveSite }: ProjectBriefProps
     <aside className="space-y-8 lg:sticky lg:top-24 lg:col-span-4 lg:self-start lg:h-fit">
       <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-2xl">
         <div className="relative p-8 md:p-10">
-          <h3 className="mb-10 font-display text-2xl font-black tracking-wide uppercase">
-            {tr("project.detail.brief")}
-          </h3>
+          <h3 className="type-h3 mb-10">{tr("project.detail.brief")}</h3>
 
           <div className="relative z-10 space-y-8">
             {project.client && (
@@ -107,10 +105,8 @@ function BriefRow({
         <Icon className="size-5" />
       </div>
       <div className="flex flex-col justify-center">
-        <div className="mb-0.5 text-[10px] font-black tracking-widest uppercase text-muted-foreground">
-          {label}
-        </div>
-        <div className="text-base font-bold leading-snug text-foreground">{children}</div>
+        <div className="type-micro mb-0.5 text-muted-foreground">{label}</div>
+        <div className="type-body-strong text-foreground">{children}</div>
       </div>
     </div>
   );
@@ -130,7 +126,7 @@ function BriefAction({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group inline-flex w-full items-center justify-center gap-3 rounded-full px-6 py-4 font-sans text-xs font-black tracking-widest uppercase transition-all ${className}`}
+      className={`type-label group inline-flex w-full items-center justify-center gap-3 rounded-full px-6 py-4 transition-all ${className}`}
     >
       {children}
     </a>

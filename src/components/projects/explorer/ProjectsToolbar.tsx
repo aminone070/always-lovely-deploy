@@ -32,7 +32,7 @@ export function ProjectsToolbar({
 
   return (
     <div
-      className="sticky z-20 -mx-5 mb-5 px-5 py-1.5"
+      className="sticky z-20 bleed-gutter mb-5 py-1.5"
       style={{ top: "calc(var(--nav-h, 4.5rem) + 0.25rem)" }}
     >
       <div className="rounded-2xl bg-card p-2.5 border border-border shadow-glow grid grid-cols-1 gap-2 md:grid-cols-[minmax(0,1fr)_auto_auto] md:items-center">
@@ -47,7 +47,7 @@ export function ProjectsToolbar({
             placeholder={tr("projects.index.searchPlaceholder")}
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="h-9 w-full rounded-xl border border-border bg-foreground/10 ps-10 pe-9 text-sm text-card-foreground placeholder:text-card-foreground/60 transition-all focus:border-foreground/40 focus:bg-foreground/15 focus:outline-none"
+            className="h-9 w-full rounded-xl border border-border bg-foreground/10 ps-10 pe-9 type-control text-card-foreground placeholder:text-card-foreground/60 transition-all focus:border-foreground/40 focus:bg-foreground/15 focus:outline-none"
           />
           {searchQuery && (
             <button
@@ -69,7 +69,7 @@ export function ProjectsToolbar({
             <SelectTrigger
               id="project-sort"
               aria-label={tr("projects.index.sort")}
-              className="h-9 w-full gap-2 rounded-xl border-border bg-foreground/10 px-3 text-sm font-bold text-card-foreground shadow-none transition-all hover:bg-foreground/15 focus:ring-0 md:w-44"
+              className="h-9 w-full gap-2 rounded-xl border-border bg-foreground/10 px-3 type-control text-card-foreground shadow-none transition-all hover:bg-foreground/15 focus:ring-0 md:w-44"
             >
               <div className="flex min-w-0 flex-1 items-center gap-2 whitespace-nowrap text-start">
                 <ArrowUpDown className="size-4 shrink-0 text-primary" />
@@ -81,7 +81,7 @@ export function ProjectsToolbar({
                 <SelectItem
                   key={option.value}
                   value={option.value}
-                  className="cursor-pointer rounded-xl text-sm text-card-foreground hover:bg-foreground/10 focus:bg-foreground/10"
+                  className="cursor-pointer rounded-xl type-control text-card-foreground hover:bg-foreground/10 focus:bg-foreground/10"
                 >
                   {tr(option.key)}
                 </SelectItem>
@@ -135,7 +135,7 @@ function ViewButton({
       title={label}
       className={`inline-flex size-9 items-center justify-center rounded-xl transition-all ${
         active
-          ? "bg-foreground text-background font-bold shadow-sm"
+          ? "bg-foreground text-background shadow-sm"
           : "text-foreground/70 hover:text-foreground"
       }`}
     >

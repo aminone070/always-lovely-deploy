@@ -16,17 +16,17 @@ export function ProjectArchitecture({
   return (
     <section>
       <DetailSectionHeader icon={Code2} title={tr("project.detail.arch")} />
-      <div className="rounded-2xl border border-border bg-card p-8 shadow-glow">
+      <div className="surface-card p-8">
         <TechStack techs={techs} />
         {detail.architecture.length > 0 && (
           <>
             <div className="my-8 h-px bg-border" />
-            <div className="mb-4 text-[10px] font-black tracking-widest uppercase text-foreground/50">
+            <div className="type-micro mb-4 text-foreground/50">
               {tr("project.detail.stackNotes")}
             </div>
             <ul className="space-y-4">
               {detail.architecture.map((note) => (
-                <li key={note} className="flex gap-3 text-sm leading-relaxed text-foreground/70">
+                <li key={note} className="type-body flex gap-3 text-foreground/70">
                   <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" />
                   <span>{note}</span>
                 </li>
@@ -49,7 +49,7 @@ export function ProjectResponsibilities({ detail }: { detail: ProjectDetailConte
         {detail.responsibilities.map((item) => (
           <li
             key={item}
-            className="flex gap-3 rounded-xl border border-border bg-card p-5 text-sm leading-relaxed text-foreground/70"
+            className="type-body flex gap-3 rounded-xl border border-border bg-card p-5 text-foreground/70"
           >
             <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
             <span>{item}</span>
@@ -69,13 +69,11 @@ export function ProjectProcess({ detail }: { detail: ProjectDetailContent }) {
       <ol className="relative space-y-8 border-s border-border ps-8">
         {detail.process.map((step) => (
           <li key={step.phase} className="relative">
-            <span className="absolute -start-[2.55rem] flex size-8 items-center justify-center rounded-full border border-border bg-card font-mono text-[10px] font-black text-primary">
+            <span className="type-micro absolute -start-[2.55rem] flex size-8 items-center justify-center rounded-full border border-border bg-card font-mono text-primary">
               {step.phase}
             </span>
-            <h3 className="mb-2 font-display text-lg font-black uppercase text-foreground">
-              {step.title}
-            </h3>
-            <p className="text-sm leading-relaxed text-foreground/60">{step.description}</p>
+            <h3 className="type-h4 mb-2 text-foreground">{step.title}</h3>
+            <p className="type-body text-foreground/60">{step.description}</p>
           </li>
         ))}
       </ol>
@@ -89,10 +87,10 @@ export function ProjectOutcomes({ detail }: { detail: ProjectDetailContent }) {
   return (
     <section>
       <DetailSectionHeader icon={TrendingUp} title={tr("project.detail.outcomes")} />
-      <div className="rounded-2xl border border-border bg-card p-8">
+      <div className="surface-card p-8">
         <ul className="space-y-4">
           {detail.outcomes.map((outcome) => (
-            <li key={outcome} className="flex gap-3 leading-relaxed text-foreground/70">
+            <li key={outcome} className="flex gap-3 type-body text-foreground/70">
               <TrendingUp className="mt-1 size-4 shrink-0 text-primary" />
               <span>{outcome}</span>
             </li>

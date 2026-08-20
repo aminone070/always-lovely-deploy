@@ -124,9 +124,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
    */
   const toggleTheme = (origin?: { x: number; y: number }) => {
     const next: Theme = theme === "dark" ? "light" : "dark";
-    const doc = typeof document !== "undefined" ? (document as Document & {
-      startViewTransition?: (cb: () => void) => { ready: Promise<void>; finished: Promise<void> };
-    }) : null;
+    const doc =
+      typeof document !== "undefined"
+        ? (document as Document & {
+            startViewTransition?: (cb: () => void) => {
+              ready: Promise<void>;
+              finished: Promise<void>;
+            };
+          })
+        : null;
 
     const reduced =
       typeof window !== "undefined" &&
@@ -156,10 +162,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         const duration = Math.round(Math.min(420, Math.max(260, radius * 0.28)));
         root.animate(
           {
-            clipPath: [
-              `circle(0px at ${x}px ${y}px)`,
-              `circle(${radius}px at ${x}px ${y}px)`,
-            ],
+            clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`],
           },
           {
             duration,
@@ -171,9 +174,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       })
       .catch(() => root.classList.remove("theme-transitioning"));
 
-    transition.finished
-      .catch(() => {})
-      .finally(() => root.classList.remove("theme-transitioning"));
+    transition.finished.catch(() => {}).finally(() => root.classList.remove("theme-transitioning"));
   };
 
   return (

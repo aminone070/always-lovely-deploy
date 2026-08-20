@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m as motion } from "framer-motion";
 import { Calendar, ChevronDown, MapPin, ShieldCheck, type LucideIcon } from "lucide-react";
 import type { CredentialItem } from "@/data";
 import { EASE } from "@/lib/motion";
@@ -35,45 +35,30 @@ export function CareerRow({ item, icon: Icon, open, reduce, onToggle }: CareerRo
         aria-expanded={open}
         className="flex w-full flex-col gap-4 p-5 text-start sm:flex-row sm:items-center sm:justify-between sm:p-6"
       >
-        <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center sm:gap-7">
-          <div className="flex items-center gap-3">
-            <span
-              dir="ltr"
-              className="min-w-9 shrink-0 font-['Oswald',sans-serif] text-xs font-bold opacity-80 sm:min-w-10 sm:text-sm"
-            >
-              {item.year}
-            </span>
+        <div className="flex items-center gap-5 sm:gap-7">
+          <span dir="ltr" className="min-w-10 type-label opacity-80">
+            {item.year}
+          </span>
 
-            <div
-              className={`grid size-9 shrink-0 place-items-center rounded-xl sm:size-10 ${
-                featured ? "bg-primary text-primary-foreground" : "bg-foreground/10 text-primary"
-              }`}
-            >
-              <Icon className="size-4" />
-            </div>
+          <div
+            className={`grid size-10 shrink-0 place-items-center rounded-xl ${
+              featured ? "bg-primary text-primary-foreground" : "bg-foreground/10 text-primary"
+            }`}
+          >
+            <Icon className="size-4" />
           </div>
 
           <div className="min-w-0">
-            <h3 className="font-['Oswald',sans-serif] text-lg leading-tight font-bold tracking-tight [overflow-wrap:anywhere] sm:text-xl">
-              {item.title[lang]}
-            </h3>
-            <p
-              className={`mt-1 text-xs font-semibold ${
-                featured ? "opacity-80" : "text-muted-foreground"
-              }`}
-            >
+            <h3 className="type-h4">{item.title[lang]}</h3>
+            <p className={`type-body mt-1 ${featured ? "opacity-80" : "text-muted-foreground"}`}>
               {item.org[lang]} · {item.location[lang]}
             </p>
           </div>
         </div>
 
-
-        <div className="flex min-w-0 items-center gap-3 sm:max-w-[20rem] sm:justify-end">
-
+        <div className="flex items-center gap-3 sm:max-w-[20rem] sm:justify-end">
           <p
-            className={`text-xs font-bold sm:text-end ${
-              featured ? "opacity-90" : "text-muted-foreground"
-            }`}
+            className={`type-body sm:text-end ${featured ? "opacity-90" : "text-muted-foreground"}`}
           >
             {item.summary[lang]}
           </p>
@@ -98,11 +83,11 @@ export function CareerRow({ item, icon: Icon, open, reduce, onToggle }: CareerRo
             className="overflow-hidden"
           >
             <div
-              className={`border-t px-5 pt-5 pb-6 sm:px-6 ${
+              className={`border-t pad-card ${
                 featured ? "border-background/20" : "border-border"
               }`}
             >
-              <div className="flex flex-wrap items-center gap-4 text-xs font-semibold">
+              <div className="type-body flex flex-wrap items-center gap-4">
                 <span className="inline-flex items-center gap-1.5 opacity-80">
                   <Calendar className="size-3.5" />
                   {item.period[lang]}
@@ -119,7 +104,7 @@ export function CareerRow({ item, icon: Icon, open, reduce, onToggle }: CareerRo
                 )}
                 {item.status && (
                   <span
-                    className={`rounded-md px-2 py-0.5 text-[10px] tracking-wider uppercase ${
+                    className={`type-micro rounded-md px-2 py-0.5 ${
                       featured ? "bg-background/20" : "bg-primary/10 text-primary"
                     }`}
                   >
@@ -145,7 +130,7 @@ export function CareerRow({ item, icon: Icon, open, reduce, onToggle }: CareerRo
                   <motion.li
                     key={point}
                     variants={rowVariants}
-                    className={`flex gap-2.5 text-sm leading-relaxed ${
+                    className={`type-body flex gap-2.5 ${
                       featured ? "opacity-90" : "text-muted-foreground"
                     }`}
                   >
@@ -160,7 +145,7 @@ export function CareerRow({ item, icon: Icon, open, reduce, onToggle }: CareerRo
                   <span
                     key={tech}
                     dir="ltr"
-                    className={`rounded-lg px-2.5 py-1 text-[11px] font-bold ${
+                    className={`type-micro rounded-lg px-2.5 py-1 ${
                       featured ? "bg-background/15" : "border border-border bg-foreground/5"
                     }`}
                   >

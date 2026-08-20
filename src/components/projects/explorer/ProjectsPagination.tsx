@@ -8,14 +8,14 @@ interface ProjectsPaginationProps {
 }
 
 const pageButton = (active: boolean) =>
-  `size-10 rounded-xl text-xs font-black transition-all ${
+  `type-label size-10 rounded-xl transition-all ${
     active
       ? "bg-foreground text-background shadow-md"
       : "border border-border bg-foreground/10 text-foreground hover:bg-foreground/20"
   }`;
 
 const stepButton =
-  "inline-flex items-center gap-2 rounded-xl bg-foreground/10 border border-border px-4 py-2 text-xs font-black tracking-wider text-foreground transition-all disabled:opacity-40 hover:enabled:bg-foreground/20";
+  "type-label inline-flex items-center gap-2 rounded-xl bg-foreground/10 border border-border px-4 py-2 text-foreground transition-all disabled:opacity-40 hover:enabled:bg-foreground/20";
 
 /** Numbered pagination for the project results. */
 export function ProjectsPagination({ page, totalPages, onPageChange }: ProjectsPaginationProps) {
@@ -27,7 +27,11 @@ export function ProjectsPagination({ page, totalPages, onPageChange }: ProjectsP
       aria-label={tr("projects.index.pagination")}
       className="flex flex-wrap items-center justify-center gap-3"
     >
-      <button onClick={() => onPageChange(Math.max(1, page - 1))} disabled={page === 1} className={stepButton}>
+      <button
+        onClick={() => onPageChange(Math.max(1, page - 1))}
+        disabled={page === 1}
+        className={stepButton}
+      >
         <ChevronLeft className="size-4 text-primary rtl:rotate-180" />
         {tr("projects.index.prev")}
       </button>

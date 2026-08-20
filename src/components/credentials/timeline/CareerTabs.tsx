@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m as motion } from "framer-motion";
 import { credentials, credentialTabs, type CredentialTab } from "@/data";
 import { useI18n } from "@/lib/i18n";
 import { tabIcons } from "./tabIcons";
@@ -29,7 +29,7 @@ export function CareerTabs({ activeTab, reduce, onSelect }: CareerTabsProps) {
             role="tab"
             aria-selected={active}
             onClick={() => onSelect(id)}
-            className={`relative inline-flex items-center gap-2 rounded-xl px-5 py-2.5 font-sans text-xs font-black tracking-[0.18em] whitespace-nowrap uppercase transition-colors ${
+            className={`type-label relative inline-flex items-center gap-2 pill-step rounded-xl whitespace-nowrap transition-colors ${
               active
                 ? "text-background"
                 : "border border-border bg-foreground/5 text-foreground hover:bg-foreground/15"
@@ -48,7 +48,7 @@ export function CareerTabs({ activeTab, reduce, onSelect }: CareerTabsProps) {
               <Icon className="size-3.5" />
               {tr(`events.tab.${id}`)}
               <span
-                className={`rounded-md px-1.5 py-0.5 text-[10px] ${
+                className={`type-micro tag-step rounded-md ${
                   active ? "bg-background/20" : "bg-foreground/10"
                 }`}
               >

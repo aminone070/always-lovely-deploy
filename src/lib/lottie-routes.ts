@@ -28,9 +28,11 @@ export function prefetchRouteLottie(path: string) {
   if (warmed.has(path)) return;
   warmed.add(path);
   const run = () => (ROUTE_LOTTIE[path] ?? []).forEach(prefetchLottie);
-  const idle = (window as unknown as {
-    requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => void;
-  }).requestIdleCallback;
+  const idle = (
+    window as unknown as {
+      requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => void;
+    }
+  ).requestIdleCallback;
   if (idle) idle(run, { timeout: 1200 });
   else window.setTimeout(run, 0);
 }
