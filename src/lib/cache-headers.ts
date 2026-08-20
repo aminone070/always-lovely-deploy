@@ -58,9 +58,8 @@ export function cacheControlFor(pathname: string, contentType: string | null): s
  * explicit decision (e.g. `sitemap.xml`).
  */
 export function withCacheHeaders(request: Request, response: Response): Response {
-  if (response.headers.has("cache-control")) return response;
   if (request.method !== "GET" && request.method !== "HEAD") return response;
-  // Only successful / redirect responses are safe to hand a long TTL.
+  // Only successful / not-modified responses are safe to hand a long TTL.
   if (response.status >= 400) return response;
 
   let pathname: string;
@@ -72,6 +71,13 @@ export function withCacheHeaders(request: Request, response: Response): Response
 
   const value = cacheControlFor(pathname, response.headers.get("content-type"));
   if (!value) return response;
+
+  // A route handler that made its own explicit decision wins (e.g. sitemap).
+  // The static-asset layer only ever emits the framework default `no-cache`,
+  // which would force a revalidation round trip per asset per navigation, so
+  // that one is intentionally upgraded for known-static paths.
+  const existing = response.headers.get("cache-control");
+  if (existing && !(value !== DOCUMENT && existing === "no-cache")) return response;
 
   // Response headers are immutable for some runtime-produced responses.
   const headers = new Headers(response.headers);
