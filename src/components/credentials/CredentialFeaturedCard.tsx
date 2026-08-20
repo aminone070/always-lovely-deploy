@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m as motion } from "framer-motion";
 import { Play } from "lucide-react";
 import type { CredentialItem } from "@/data";
 import { EASE } from "@/lib/motion";
@@ -31,9 +31,9 @@ export function CredentialFeaturedCard({
       initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: EASE, delay: reduce ? 0 : 0.08 * index }}
-      className="relative flex h-full min-w-0 flex-col items-center rounded-2xl border border-border bg-card p-6 text-center shadow-glow sm:p-7 lg:p-8"
+      className="relative flex h-full min-w-0 flex-col items-center surface-card p-6 text-center sm:p-8"
     >
-      <span className="mb-6 rounded-xl border border-border bg-foreground/10 px-4 py-1 font-sans text-[10px] font-black tracking-widest uppercase text-primary">
+      <span className="mb-6 rounded-xl border border-border bg-foreground/10 px-4 py-1 type-micro text-primary">
         {item.year}
       </span>
 
@@ -45,11 +45,9 @@ export function CredentialFeaturedCard({
         <Icon className="size-8 text-primary" />
       </motion.div>
 
-      <h3 className="mb-3 font-['Oswald',sans-serif] text-2xl leading-tight font-bold text-card-foreground">
-        {item.title[lang]}
-      </h3>
+      <h3 className="mb-3 type-h3 text-card-foreground">{item.title[lang]}</h3>
 
-      <p className="mb-6 max-w-[34ch] font-sans text-xs leading-relaxed text-balance text-card-foreground/85">
+      <p className="mb-6 max-w-[34ch] type-body text-balance text-card-foreground/85">
         {item.summary[lang]}
       </p>
 
@@ -79,7 +77,7 @@ export function CredentialFeaturedCard({
                     show: { opacity: 1, y: 0 },
                   }}
                   transition={{ duration: 0.3, ease: EASE }}
-                  className="flex gap-2 font-sans text-[11px] leading-relaxed text-card-foreground/80"
+                  className="flex gap-2 type-body text-card-foreground/80"
                 >
                   <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
                   {h}
@@ -91,7 +89,7 @@ export function CredentialFeaturedCard({
               {item.stack.map((s) => (
                 <span
                   key={s}
-                  className="rounded-lg border border-border bg-foreground/10 px-2 py-0.5 font-sans text-[9px] font-black tracking-widest uppercase text-primary"
+                  className="rounded-lg border border-border bg-foreground/10 px-2 py-0.5 type-micro text-primary"
                 >
                   {s}
                 </span>
@@ -99,9 +97,7 @@ export function CredentialFeaturedCard({
             </div>
 
             {item.credentialId && (
-              <p className="mt-3 mb-1 font-sans text-[10px] tracking-widest uppercase text-card-foreground/60">
-                {item.credentialId}
-              </p>
+              <p className="mt-3 mb-1 type-micro text-card-foreground/60">{item.credentialId}</p>
             )}
           </motion.div>
         )}
@@ -110,7 +106,7 @@ export function CredentialFeaturedCard({
       <button
         onClick={onToggle}
         aria-expanded={open}
-        className="group mt-auto inline-flex w-full items-center justify-center gap-3 rounded-xl border border-border bg-background px-6 py-3 shadow-md transition-transform hover:scale-[1.03]"
+        className="group btn-surface mt-auto w-full"
       >
         <span className="grid size-6 place-items-center rounded-xl bg-primary text-primary-foreground">
           <motion.span
@@ -121,9 +117,7 @@ export function CredentialFeaturedCard({
             <Play className="ms-0.5 size-3 fill-primary-foreground text-primary-foreground" />
           </motion.span>
         </span>
-        <span className="font-sans text-xs font-black tracking-[0.2em] uppercase text-foreground">
-          {detailsLabel}
-        </span>
+        <span className="type-label text-foreground">{detailsLabel}</span>
       </button>
     </motion.div>
   );

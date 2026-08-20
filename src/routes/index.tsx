@@ -5,11 +5,12 @@ import { AboutPreview } from "@/components/sections/home/AboutPreview";
 import { SkillsPreview } from "@/components/sections/home/SkillsPreview";
 import { Projects } from "@/components/sections/Projects";
 import { ExperiencePreview } from "@/components/sections/home/ExperiencePreview";
-import { CredentialsCarousel } from "@/components/credentials/CredentialsCarousel";
+import { CredentialsCarouselLazy } from "@/components/credentials/CredentialsCarouselLazy";
 import { ContactCta } from "@/components/sections/home/ContactCta";
+import { LazyIsland } from "@/components/ui/LazyIsland";
 import { pageSeo } from "@/lib/seo";
 import { SITE, absoluteUrl } from "@/lib/site";
-import heroIsoAvif from "@/assets/hero-iso.avif";
+const heroIsoAvif = "/images/hero-iso.avif";
 
 const DESCRIPTION =
   "Portfolio of Mostafa Samir, Senior Full Stack Engineer specializing in .NET 8 microservices, React.js and Angular platforms.";
@@ -39,7 +40,16 @@ export const Route = createFileRoute("/")({
 
     return {
       ...seo,
-      links: [...seo.links, { rel: "preload", as: "image", type: "image/avif", href: heroIsoAvif, fetchPriority: "high" }],
+      links: [
+        ...seo.links,
+        {
+          rel: "preload",
+          as: "image",
+          type: "image/avif",
+          href: heroIsoAvif,
+          fetchPriority: "high",
+        },
+      ],
     };
   },
   component: Index,
@@ -59,12 +69,12 @@ function Index() {
       <div className="defer-paint">
         <AboutPreview />
       </div>
-      <div className="defer-paint">
-        <CredentialsCarousel />
-      </div>
-      <div className="defer-paint">
+      <LazyIsland className="defer-paint">
+        <CredentialsCarouselLazy />
+      </LazyIsland>
+      <LazyIsland className="defer-paint">
         <ContactCta />
-      </div>
+      </LazyIsland>
     </PageShell>
   );
 }

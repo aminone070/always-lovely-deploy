@@ -9,7 +9,7 @@ export function ProjectDetailsLink({ project, label }: { project: Project; label
     <Link
       to="/projects/$id"
       params={{ id: project.id }}
-      className="inline-flex items-center gap-2 font-sans text-xs font-black tracking-widest text-primary uppercase transition-all hover:gap-3"
+      className="type-label inline-flex items-center gap-2 text-primary transition-all hover:gap-3"
     >
       {label}
       <ArrowRight className="size-4 rtl:rotate-180" />

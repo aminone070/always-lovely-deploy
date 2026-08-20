@@ -13,7 +13,7 @@ export function RelatedProjects({ projects }: { projects: Project[] }) {
 
   return (
     <section className="mt-32 border-t border-border pt-16">
-      <h3 className="mb-12 text-center font-display text-2xl font-black uppercase text-foreground/50">
+      <h3 className="type-h3 mb-12 text-center text-foreground/50">
         {tr("project.detail.related")}
       </h3>
       <div className="grid gap-6 md:grid-cols-3">
@@ -22,7 +22,7 @@ export function RelatedProjects({ projects }: { projects: Project[] }) {
             key={item.id}
             to="/projects/$id"
             params={{ id: item.id }}
-            className="group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl"
+            className="group overflow-hidden surface-card-interactive"
           >
             <div className="aspect-[16/10] overflow-hidden">
               <SmartImage
@@ -36,13 +36,9 @@ export function RelatedProjects({ projects }: { projects: Project[] }) {
               />
             </div>
             <div className="p-6">
-              <div className="mb-2 text-[10px] font-black tracking-widest uppercase text-primary">
-                {L.category(item.category)}
-              </div>
-              <h4 className="font-display text-xl font-black uppercase text-card-foreground">
-                {L.projectTitle(item)}
-              </h4>
-              <p className="mt-2 line-clamp-2 text-sm text-foreground/60">
+              <div className="type-micro mb-2 text-primary">{L.category(item.category)}</div>
+              <h4 className="type-h3 text-card-foreground">{L.projectTitle(item)}</h4>
+              <p className="type-body mt-2 line-clamp-2 text-foreground/60">
                 {L.projectDescription(item)}
               </p>
             </div>

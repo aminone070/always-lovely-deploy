@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { m as motion, useReducedMotion } from "framer-motion";
 import type { Project } from "@/data";
 import { Tag } from "@/components/ui/Tag";
 import { useI18n } from "@/lib/i18n";
@@ -37,13 +37,11 @@ export function ProjectRow({ project, index }: ProjectRowProps) {
       </div>
       <div className="min-w-0">
         <div className="flex flex-wrap items-center gap-2">
-          <h3 className="font-['Oswald',sans-serif] text-2xl font-bold text-card-foreground">
-            {projectTitle(project)}
-          </h3>
+          <h3 className="type-h3 text-card-foreground">{projectTitle(project)}</h3>
           <Tag>{projectType(project.type)}</Tag>
           {project.client && <Tag {...latinProps}>{project.client}</Tag>}
         </div>
-        <p className="mt-2 line-clamp-2 font-sans text-xs text-card-foreground/85 leading-relaxed">
+        <p className="type-body mt-2 line-clamp-2 text-card-foreground/85">
           {projectDescription(project)}
         </p>
         <div className="mt-3">

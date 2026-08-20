@@ -69,24 +69,24 @@ export function SmartImage({
             <source type="image/avif" srcSet={resolved.avifSrcSet} sizes={sizes} />
           )}
           <img
-          ref={imgRef}
-          src={resolved.src}
-          srcSet={resolved.srcSet}
-          sizes={resolved.srcSet ? sizes : undefined}
-          alt={alt}
-          width={width}
-          height={height}
-          loading={priority ? "eager" : "lazy"}
-          decoding={priority ? "sync" : "async"}
-          fetchPriority={priority ? "high" : "low"}
-          draggable={false}
-          onLoad={() => setStatus("ready")}
-          onError={() => setStatus("error")}
-          className={cn(
-            "size-full object-cover transition-opacity duration-500",
-            status === "ready" ? "opacity-100" : "opacity-0",
-            imgClassName,
-          )}
+            ref={imgRef}
+            src={resolved.src}
+            srcSet={resolved.srcSet}
+            sizes={resolved.srcSet ? sizes : undefined}
+            alt={alt}
+            width={width}
+            height={height}
+            loading={priority ? "eager" : "lazy"}
+            decoding={priority ? "sync" : "async"}
+            fetchPriority={priority ? "high" : "low"}
+            draggable={false}
+            onLoad={() => setStatus("ready")}
+            onError={() => setStatus("error")}
+            className={cn(
+              "size-full object-cover transition-opacity duration-500",
+              status === "ready" ? "opacity-100" : "opacity-0",
+              imgClassName,
+            )}
           />
         </picture>
       )}

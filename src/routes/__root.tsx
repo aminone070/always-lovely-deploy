@@ -12,6 +12,7 @@ import appCss from "../styles.css?url";
 import { describeError } from "@/lib/error-capture";
 import { ThemeProvider, themeBootstrapScript } from "@/lib/theme";
 import { I18nProvider, langBootstrapScript, useI18n } from "@/lib/i18n";
+import { MotionProvider } from "@/lib/motion-provider";
 import { useSmoothScroll } from "@/lib/smooth-scroll";
 import { PageSkeleton } from "@/components/ui/Skeletons";
 import { AppPreloader, preloaderBootstrapScript } from "@/components/ui/AppPreloader";
@@ -59,10 +60,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
 
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-bold tracking-tight text-foreground">This page didn't load</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <h1 className="type-h3 text-foreground">This page didn't load</h1>
+        <p className="mt-2 type-body-sm text-muted-foreground">
           Something went wrong on our end. You can try refreshing or head back home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
@@ -79,7 +80,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-xl border border-border px-5 py-2.5 text-sm font-bold text-foreground"
+            className="inline-flex items-center justify-center pill-step rounded-xl border border-border type-body-sm text-foreground"
           >
             Go home
           </a>
@@ -118,7 +119,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         // Latin faces only, trimmed to the weights the design actually uses.
         // Arabic families load on demand (see <ArabicFonts />).
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=Caveat:wght@600;700&family=DM+Sans:wght@400;500;700&family=Oswald:wght@700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Caveat:wght@700&family=DM+Sans:wght@400;500;700&family=Oswald:wght@400;600;700&display=swap",
       },
 
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
@@ -173,16 +174,18 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <I18nProvider>
-          <ArabicFonts />
-          <AppPreloader />
-          {hydrated && (
-            <Suspense fallback={null}>
-              <Toaster position="bottom-right" richColors />
-              <WelcomeModal />
-            </Suspense>
-          )}
-          {/* Required: nested routes render here. */}
-          <Outlet />
+          <MotionProvider>
+            <ArabicFonts />
+            <AppPreloader />
+            {hydrated && (
+              <Suspense fallback={null}>
+                <Toaster position="bottom-right" richColors />
+                <WelcomeModal />
+              </Suspense>
+            )}
+            {/* Required: nested routes render here. */}
+            <Outlet />
+          </MotionProvider>
         </I18nProvider>
       </ThemeProvider>
     </QueryClientProvider>

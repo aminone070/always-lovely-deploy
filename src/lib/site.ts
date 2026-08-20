@@ -6,8 +6,10 @@ export const SITE = {
   name: "Mostafa Samir",
   role: "Senior Full Stack Engineer",
   titleSuffix: "Mostafa Samir | Senior Full Stack Engineer",
-  /** Absolute origin, no trailing slash. Empty => relative URLs. */
-  url: (import.meta.env["VITE_SITE_URL"] as string | undefined)?.replace(/\/$/, "") ?? "",
+  /** Absolute origin, no trailing slash. Override with VITE_SITE_URL if needed. */
+  url:
+    (import.meta.env["VITE_SITE_URL"] as string | undefined)?.replace(/\/$/, "") ??
+    "https://cozy-darkness.lovable.app",
   twitter: "@Lovable",
 } as const;
 

@@ -11,13 +11,13 @@ export function TechStackPreview({ techs, limit = 3 }: TechStackPreviewProps) {
         <span
           key={tech}
           dir="ltr"
-          className="keep-latin rounded-xl bg-foreground/10 border border-border px-2.5 py-1 text-xs font-semibold text-card-foreground/90"
+          className="keep-latin rounded-xl bg-foreground/10 border border-border px-2.5 py-1 type-tag text-card-foreground/90"
         >
           {tech}
         </span>
       ))}
       {techs.length > limit && (
-        <span className="rounded-xl bg-primary/20 border border-primary/40 px-2.5 py-1 text-xs font-bold text-primary">
+        <span className="rounded-xl bg-primary/20 border border-primary/40 px-2.5 py-1 type-tag text-primary">
           +{techs.length - limit}
         </span>
       )}

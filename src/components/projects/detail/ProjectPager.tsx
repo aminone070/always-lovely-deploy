@@ -16,7 +16,7 @@ export function ProjectPager({ prev, next }: ProjectPagerProps) {
 
   return (
     <div className="mt-24 border-t border-border pt-16">
-      <h3 className="mb-12 text-center font-display text-2xl font-black uppercase text-foreground/50">
+      <h3 className="type-h3 mb-12 text-center text-foreground/50">
         {tr("project.detail.continue")}
       </h3>
       <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
@@ -36,7 +36,7 @@ function PagerCard({ project, direction }: { project: Project; direction: "prev"
     <Link
       to="/projects/$id"
       params={{ id: project.id }}
-      className={`group relative overflow-hidden rounded-2xl border border-border bg-card p-8 shadow-lg transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl ${
+      className={`group relative overflow-hidden surface-card-interactive p-8 ${
         isNext ? "text-end" : ""
       }`}
     >
@@ -44,7 +44,7 @@ function PagerCard({ project, direction }: { project: Project; direction: "prev"
         className={`absolute inset-0 bg-gradient-to-${isNext ? "l" : "r"} from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100`}
       />
       <div className={`relative z-10 ${isNext ? "flex flex-col items-end" : ""}`}>
-        <div className="mb-3 flex items-center gap-2 font-sans text-[10px] font-black tracking-widest uppercase text-primary">
+        <div className="type-micro mb-3 flex items-center gap-2 text-primary">
           {isNext ? (
             <>
               {tr("project.detail.next")} <ArrowRight className="size-3 rtl:rotate-180" />
@@ -55,9 +55,7 @@ function PagerCard({ project, direction }: { project: Project; direction: "prev"
             </>
           )}
         </div>
-        <h4 className="font-display text-2xl font-black uppercase text-card-foreground md:text-3xl">
-          {projectTitle(project)}
-        </h4>
+        <h4 className="type-h3 text-card-foreground">{projectTitle(project)}</h4>
       </div>
     </Link>
   );

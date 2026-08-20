@@ -64,8 +64,7 @@ export function useProjectsExplorer() {
   }, []);
 
   const filtered = useMemo(() => {
-    const byCategory =
-      filter === "All" ? projects : projects.filter((p) => p.category === filter);
+    const byCategory = filter === "All" ? projects : projects.filter((p) => p.category === filter);
     const query = deferredQuery.trim().toLowerCase();
     const searched = query ? byCategory.filter((p) => matchesQuery(p, query)) : byCategory;
     return sortProjects(searched, sort);

@@ -30,19 +30,19 @@ export function PageShell({
   disableOverflowX = false,
 }: PageShellProps) {
   return (
-    <div className={cn("flex min-h-dvh flex-col bg-background text-foreground", !disableOverflowX && "overflow-x-hidden")}>
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
+    <div
+      className={cn(
+        "flex min-h-screen select-none flex-col bg-background text-foreground",
+        !disableOverflowX && "overflow-x-hidden",
+      )}
+    >
       <Navbar />
       <main
-        id="main-content"
-        tabIndex={-1}
         ref={mainRef}
         className={cn(
           "flex-1",
-          padded && "pb-12 pt-24",
-          contained && "mx-auto w-full max-w-6xl px-4 sm:px-8 md:px-12",
+          padded && "nav-offset pb-16",
+          contained && "container-page page-gutter",
           className,
         )}
       >

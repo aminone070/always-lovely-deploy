@@ -12,7 +12,7 @@ export function DetailSectionHeader({ icon: Icon, title }: DetailSectionHeaderPr
       <div className="rounded-2xl bg-primary/10 p-3 text-primary">
         <Icon className="size-7" />
       </div>
-      <h2 className="font-display text-2xl font-black uppercase md:text-3xl">{title}</h2>
+      <h2 className="type-h2">{title}</h2>
     </div>
   );
 }
