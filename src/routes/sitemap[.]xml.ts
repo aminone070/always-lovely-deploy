@@ -47,12 +47,20 @@ export const Route = createFileRoute("/sitemap.xml")({
           `</urlset>`,
         ].join("\n");
 
-        return new Response(xml, {
-          headers: {
-            "Content-Type": "application/xml",
-            "Cache-Control": "public, max-age=3600",
-          },
-        });
+        // Weak ETag over the generated body so crawlers revalidating an hour
+        // later get a 304 instead of re-downloading the whole document.
+        const etag = `W/"${xml.length.toString(16)}-${hash(xml).toString(16)}"`;
+        const headers = {
+          "Content-Type": "application/xml",
+          "Cache-Control": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800",
+          ETag: etag,
+        };
+
+        if (request.headers.get("if-none-match") === etag) {
+          return new Response(null, { status: 304, headers });
+        }
+
+        return new Response(xml, { headers });
       },
     },
   },
