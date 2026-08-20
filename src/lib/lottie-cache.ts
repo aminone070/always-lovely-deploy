@@ -50,20 +50,47 @@ export function loadLottiePlayer(): Promise<PlayerModule> {
 const dataCache = new Map<string, Promise<ArrayBuffer>>();
 const resolved = new Map<string, ArrayBuffer>();
 
+/**
+ * Decoded animation bytes are kept in memory for instant re-mounts, but the
+ * map must stay bounded: a long session that visits every route would
+ * otherwise pin every `.lottie` buffer for the lifetime of the tab.
+ * Simple LRU — re-reading an entry refreshes its position.
+ */
+const MAX_RESOLVED = 8;
+
+function touch(src: string, buf: ArrayBuffer) {
+  resolved.delete(src);
+  resolved.set(src, buf);
+  while (resolved.size > MAX_RESOLVED) {
+    const oldest = resolved.keys().next().value;
+    if (oldest === undefined) break;
+    resolved.delete(oldest);
+    // The in-flight promise cache is dropped too, so a later mount re-fetches
+    // from the HTTP cache (cheap) instead of holding the bytes forever.
+    dataCache.delete(oldest);
+  }
+}
+
 export function getCachedLottie(src: string): ArrayBuffer | undefined {
-  return resolved.get(src);
+  const buf = resolved.get(src);
+  if (buf) touch(src, buf);
+  return buf;
 }
 
 export function loadLottieData(src: string): Promise<ArrayBuffer> {
   let p = dataCache.get(src);
   if (!p) {
-    p = fetch(src, { cache: "force-cache" })
+    // `force-cache` would pin a stale animation forever after a redeploy.
+    // The server now sends an explicit `max-age` + `stale-while-revalidate`
+    // policy for `/lottie/*`, so the default HTTP cache does the right thing:
+    // no network at all while fresh, a cheap 304 afterwards.
+    p = fetch(src)
       .then((r) => {
         if (!r.ok) throw new Error(`Failed to load lottie: ${src}`);
         return r.arrayBuffer();
       })
       .then((buf) => {
-        resolved.set(src, buf);
+        touch(src, buf);
         return buf;
       })
       .catch((err) => {

@@ -3,6 +3,16 @@ import type {} from "@tanstack/react-start";
 import { projects } from "@/data";
 import { SITE } from "@/lib/site";
 
+/** Tiny non-cryptographic hash (FNV-1a) used only for ETag generation. */
+function hash(input: string): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < input.length; i++) {
+    h ^= input.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return h >>> 0;
+}
+
 interface SitemapEntry {
   path: string;
   changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
@@ -47,12 +57,20 @@ export const Route = createFileRoute("/sitemap.xml")({
           `</urlset>`,
         ].join("\n");
 
-        return new Response(xml, {
-          headers: {
-            "Content-Type": "application/xml",
-            "Cache-Control": "public, max-age=3600",
-          },
-        });
+        // Weak ETag over the generated body so crawlers revalidating an hour
+        // later get a 304 instead of re-downloading the whole document.
+        const etag = `W/"${xml.length.toString(16)}-${hash(xml).toString(16)}"`;
+        const headers = {
+          "Content-Type": "application/xml",
+          "Cache-Control": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800",
+          ETag: etag,
+        };
+
+        if (request.headers.get("if-none-match") === etag) {
+          return new Response(null, { status: 304, headers });
+        }
+
+        return new Response(xml, { headers });
       },
     },
   },
